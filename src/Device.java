@@ -8,8 +8,7 @@ public class Device implements Library {
 
 	@Override
 	public void send() {
-		// TODO Auto-generated method stub
-		
+		System.out.println("Send Test - " + this.getClass().getName());
 	}
 
 }

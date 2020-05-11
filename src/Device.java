@@ -1,13 +1,12 @@
-public class Device implements Library {
-
-	@Override
-	public void receive() {
-		// TODO Auto-generated method stub
+public class Device implements Library 
+{
+	public void receive(String data) {
+		System.out.println("Receive Test - " + this.getClass().getName());
 		
 	}
 
 	@Override
-	public void send() {
+	public void send(String data) {
 		System.out.println("Send Test - " + this.getClass().getName());
 	}
 

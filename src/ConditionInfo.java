@@ -3,13 +3,12 @@ import java.util.Date;
 
 public class ConditionInfo {
 	
-	public ArrayList<Condition> Conditions = new ArrayList<>();
+	private ArrayList<Condition> Conditions = new ArrayList<Condition>();
 	private Location lastLocation;
 	private Date lastUpdate;
 	
-	ConditionInfo(ArrayList<Condition> Conditions, Location lastLocation, Date lastUpdate)
+	public ArrayList<Condition> getInfo()
 	{
-		this.Conditions = Conditions;
-		this.lastLocation = lastLocation;
+		return Conditions;
 	}
 }

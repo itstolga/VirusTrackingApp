@@ -1,5 +1,5 @@
 public interface Library 
 {
-	void receive();
-	void send();
+	void receive(String data);
+	void send(String data);
 }

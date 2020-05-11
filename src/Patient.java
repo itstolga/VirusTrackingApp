@@ -5,7 +5,7 @@ import java.time.ZoneOffset;
 
 public class Patient 
 {
-	public static int last_id = 1;
+	public static int last_id = 1; // AUTO ID
 	
 	private int id;
 	private String name;

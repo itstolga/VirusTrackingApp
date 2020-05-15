@@ -1,10 +1,10 @@
 import java.util.ArrayList;
 
-public class SearchEngine
+public class SearchEngineOLD
 {
 	Database db;
 	
-	public SearchEngine()
+	public SearchEngineOLD()
 	{
 		ConnectDB();
 	}
@@ -13,7 +13,7 @@ public class SearchEngine
 	{
 		db = Database.getDB();
 	}
-	
+
 	public ArrayList<Patient> SearchPatient(String query)
 	{
 		ArrayList<Patient> founded = new ArrayList<Patient>();

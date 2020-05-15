@@ -7,16 +7,18 @@ public class Database
 	
 	
 	
-	private ArrayList<Patient> Patients;
+	private static PatientList<Patient> Patients;
 	
 	public static Database getDB()
 	{
+		Patients = new PatientList<Patient>();
 		if(instance == null) return new Database();
 		else return instance;
 	}
 	
 	
-	
 	public void addPatient(Patient p) { Patients.add(p); }
-	public ArrayList<Patient> getPatients() { return Patients; }
+	public PatientList<Patient> getPatients() { return Patients; }
+	
+	public void removePatient(Patient p) { Patients.remove(p); }
 }

@@ -39,6 +39,11 @@ public class Patient
 	 * 
 	 */
 	
+	public String getName()
+	{
+		return this.name;
+	}
+	
 	public Device getDevice()
 	{
 		return userDevice;

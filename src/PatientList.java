@@ -1,5 +1,9 @@
 import java.util.ArrayList;
 
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
+
 public class PatientList<E> extends ArrayList<Patient> {
 
 	private static final long serialVersionUID = 1L;
@@ -49,4 +53,27 @@ public class PatientList<E> extends ArrayList<Patient> {
 		return founded;
 	}
 	
+	public PatientList<Patient> SearchByAge(String condition, int age)
+	{
+		PatientList<Patient> founded = new PatientList<Patient>();
+		
+		ScriptEngineManager factory = new ScriptEngineManager();
+        ScriptEngine engine = factory.getEngineByName("JavaScript");
+        
+		for(Patient p : this)
+		{
+			try {
+				engine.eval("value = "+p.getAge());
+		        Boolean isOkay = (Boolean) engine.eval("value "+condition+" "+age);
+				if(isOkay)
+				{
+					founded.add(p);
+				}
+			} catch (ScriptException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return founded;
+	}
 }

@@ -1,11 +1,13 @@
 
 public class TestApp 
 {
-	public static void main(String[] args) 
+	static Database ConnectDatabase()
 	{
-		Database database = Database.getDB();
-		
-		
+		return Database.getDB();
+	}
+	
+	static void AddPatients(Database database)
+	{
 		Patient test = new Patient("Tolga");
 		test.setPassword("123");
 		test.setDevice(new Samsung());
@@ -26,10 +28,15 @@ public class TestApp
 		test2.setBirthDate(Functions.giveDate("26.11.2010"));
 		test2.setAddress("Sakarya Cad. Balçova / Ýzmir");
 		database.addPatient(test2);
+	}
+	
+	public static void main(String[] args) 
+	{
+		Database database = ConnectDatabase();
+		AddPatients(database);
 		
 		System.out.println("Searching");
-
-		for(Patient p : database.getPatients().SearchByAddress("Balçova").SearchByCondition("Kalp", "Critic"))
+		for(Patient p : database.getPatients().SearchByName("Eren").SearchByCondition("Kalp", "Normal").SearchByAge(">", 9))
 		{
 			p.getInfo();
 		}

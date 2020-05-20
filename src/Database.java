@@ -7,11 +7,10 @@ public class Database
 	
 	
 	
-	private static PatientList<Patient> Patients;
+	private static PatientList<Patient> Patients = new PatientList<Patient>();
 	
 	public static Database getDB()
 	{
-		Patients = new PatientList<Patient>();
 		if(instance == null) return new Database();
 		else return instance;
 	}

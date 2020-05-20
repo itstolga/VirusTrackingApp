@@ -12,12 +12,12 @@ public class Patient
 	private String address = "Unknown";
 	private Date birthDate;
 	private String password;
-	private ConditionInfo condition;
+	private ConditionInfo conditionInfo;
 	private Device userDevice;
 	
 	Patient(String Name)
 	{
-		this.condition = new ConditionInfo();
+		this.conditionInfo = new ConditionInfo();
 		this.id = Patient.generateID();
 		this.name = Name;
 		
@@ -30,8 +30,6 @@ public class Patient
 		Patient.last_id += 1;
 		return give_id;
 	}
-	
-	
 	
 	/*
 	 *
@@ -56,12 +54,20 @@ public class Patient
 	
 	public ConditionInfo getConditions()
 	{
-		return condition;
+		return conditionInfo;
 	}
 	
-	public void addCondition(Condition newCondition)
+	void addCondition(Condition newCondition)
 	{
-		condition.getInfo().add(newCondition);
+		conditionInfo.getInfo().add(newCondition);
+		conditionInfo.Update();
+	}
+	
+	
+	void updateCondition(Condition condition, Condition updated)
+	{
+		condition = updated;
+		conditionInfo.Update();
 	}
 	
 	

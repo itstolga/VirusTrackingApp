@@ -36,7 +36,7 @@ public class TestApp
 		AddPatients(database);
 		
 		System.out.println("Searching");
-		for(Patient p : database.getPatients().SearchByName("Eren").SearchByCondition("Kalp", "Normal").SearchByAge(">", 9))
+		for(Patient p : database.getPatients().SearchByCondition("Kalp", Condition.ConditionStatus.Critic).SearchByAge(">", 9))
 		{
 			p.getInfo();
 		}

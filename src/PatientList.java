@@ -22,7 +22,7 @@ public class PatientList<E> extends ArrayList<Patient> {
 		return founded;
 	}
 	
-	public PatientList<Patient> SearchByCondition(String condition, String status)
+	public PatientList<Patient> SearchByCondition(String condition, Condition.ConditionStatus status)
 	{
 		PatientList<Patient> founded = new PatientList<Patient>();
 

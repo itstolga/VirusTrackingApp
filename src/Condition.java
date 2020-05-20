@@ -1,16 +1,17 @@
 public class Condition {
 	String name;
-	String status;
+	ConditionStatus status;
 	
-	enum ConditionStatus
+	public enum ConditionStatus
 	{
 		Normal,
-		Critic
+		Critic,
+		Unknown
 	}
 	
 	public Condition(String name, ConditionStatus conditionStatus)
 	{
 		this.name = name;
-		this.status = conditionStatus.toString();
+		this.status = conditionStatus;
 	}
 }

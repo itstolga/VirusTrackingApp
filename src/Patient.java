@@ -1,7 +1,7 @@
+import java.util.ArrayList;
 import java.util.Date;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;  
+
+import java.time.LocalDateTime;  
 
 public class Patient 
 {
@@ -12,16 +12,25 @@ public class Patient
 	private String address = "Unknown";
 	private Date birthDate;
 	private String password;
-	private ConditionInfo conditionInfo;
+	private Conditions.Fever FeverCondition;
+
+	private Conditions.MuscleAche MuscleCondition;
+	private Conditions.RunnyNose NoseCondition;
+	private ArrayList<Conditions.Condition> Conditions = new ArrayList<Conditions.Condition>();
 	private Device userDevice;
 	
 	Patient(String Name)
 	{
-		this.conditionInfo = new ConditionInfo();
 		this.id = Patient.generateID();
 		this.name = Name;
 		
-		//Database.getDB().addPatient(this);
+		FeverCondition = new Conditions().new Fever();
+		MuscleCondition = new Conditions().new MuscleAche();
+		NoseCondition = new Conditions().new RunnyNose();
+		
+		Conditions.add(FeverCondition);
+		Conditions.add(MuscleCondition);
+		Conditions.add(NoseCondition);
 	}
 	
 	static int generateID()
@@ -36,6 +45,20 @@ public class Patient
 	 * PATIENT OBJECT
 	 * 
 	 */
+	
+
+	public Conditions.Fever getFeverCondition() {
+		return FeverCondition;
+	}
+
+	public Conditions.MuscleAche getMuscleCondition() {
+		return MuscleCondition;
+	}
+
+	public Conditions.RunnyNose getNoseCondition() {
+		return NoseCondition;
+	}
+
 	
 	public String getName()
 	{
@@ -52,24 +75,30 @@ public class Patient
 		userDevice = device;
 	}
 	
-	public ConditionInfo getConditions()
-	{
-		return conditionInfo;
-	}
 	
-	void addCondition(Condition newCondition)
+	public ArrayList<Conditions.Condition> getConditions()
 	{
-		conditionInfo.getInfo().add(newCondition);
-		conditionInfo.Update();
+		return this.Conditions;
 	}
 	
 	
-	void updateCondition(Condition condition, Condition updated)
+	public void printConditionInfos()
 	{
-		condition = updated;
-		conditionInfo.Update();
+		for(Conditions.Condition c : getConditions())
+		{
+			System.out.println(c.getName() + " - " + c.getStatus().toString());
+		}
 	}
 	
+	public Date getLastConditionsUpdate()
+	{
+		Date latest = null;
+		for(Conditions.Condition c : getConditions())
+		{
+			if(latest == null || latest.before(c.getLastUpdateDate())) latest = c.getLastUpdateDate();
+		}
+		return latest;
+	}
 	
 	public void getInfo()
 	{
@@ -79,9 +108,9 @@ public class Patient
 		System.out.println("| _ BirthDate: " + Functions.giveDateString(this.birthDate));
 
 		System.out.println("| _ Condition Info: ");
-		for(Condition c : getConditions().getInfo())
+		for(Conditions.Condition c : this.getConditions())
 		{
-			System.out.println("| ----> " + c.name + " " + c.status);
+			System.out.println("| ----> " + c.getName() + " " + c.getStatus().toString());
 		}
 		System.out.println("| _ Address: " + this.getAddress());
 		System.out.println("|___________________________\n");

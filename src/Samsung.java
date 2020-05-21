@@ -1,7 +1,6 @@
 public class Samsung extends Device 
 {
-
-	public void get()
+	public void get(String data)
 	{
 		System.out.println("Receive Test - " + this.getClass().getName());
 	}

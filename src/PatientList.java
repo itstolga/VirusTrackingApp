@@ -22,15 +22,15 @@ public class PatientList<E> extends ArrayList<Patient> {
 		return founded;
 	}
 	
-	public PatientList<Patient> SearchByCondition(String condition, Condition.ConditionStatus status)
+	public PatientList<Patient> SearchByCondition(Conditions.ConditionType conditionType, Conditions.ConditionStatus status)
 	{
 		PatientList<Patient> founded = new PatientList<Patient>();
 
 		for(Patient p : this)
 		{
-			for(Condition c : p.getConditions().getInfo())
+			for(Conditions.Condition c : p.getConditions())
 			{
-				if(c.name.equals(condition) && c.status.equals(status))
+				if(c.getType().equals(conditionType) && c.getStatus().equals(status))
 				{
 					founded.add(p);
 				}

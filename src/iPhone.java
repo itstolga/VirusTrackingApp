@@ -1,4 +1,3 @@
-
 public class iPhone extends Device
 {
 	public void read()

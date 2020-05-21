@@ -1,13 +1,14 @@
 public class Samsung extends Device 
 {
 
-	public void get(String data)
+	public void get()
 	{
-		super.receive(data);
+		System.out.println("Receive Test - " + this.getClass().getName());
 	}
 	
-	public void set(String data)
+	public Object set()
 	{
-		super.send(data);
+		System.out.println("Send Test - " + this.getClass().getName());
+		return this;
 	}
 }

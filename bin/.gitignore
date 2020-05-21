@@ -1,9 +1,7 @@
-/Conditions$ConditionStatus.class
-/Conditions.class
-/Conditions$Condition.class
-/Conditions$Fever.class
-/Conditions$MuscleAche.class
-/Conditions$RunnyNose.class
-/Conditions$ConditionID.class
-/Conditions$ConditionType.class
-/DeviceAdapter.class
+/iPhoneevice.class
+/iPhone.class
+/Device.class
+/DeviceList.class
+/Device$DataType.class
+/TestApp$SayHello.class
+/TestApp$TimerForUpdate.class

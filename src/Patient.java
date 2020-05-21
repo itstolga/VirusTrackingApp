@@ -1,3 +1,6 @@
+// Facade Pattern
+
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -19,10 +22,12 @@ public class Patient
 	private ArrayList<Conditions.Condition> Conditions = new ArrayList<Conditions.Condition>();
 	private Device userDevice;
 	
-	Patient(String Name)
+	Patient(String name, String birthDate, String address)
 	{
 		this.id = Patient.generateID();
-		this.name = Name;
+		this.name = name;
+		this.birthDate = Functions.giveDate(birthDate);
+		this.address = address;
 		
 		FeverCondition = new Conditions().new Fever();
 		MuscleCondition = new Conditions().new MuscleAche();
@@ -95,7 +100,8 @@ public class Patient
 		Date latest = null;
 		for(Conditions.Condition c : getConditions())
 		{
-			if(latest == null || latest.before(c.getLastUpdateDate())) latest = c.getLastUpdateDate();
+			if(c.getLastUpdateDate() != null)
+				if(latest == null || latest.before(c.getLastUpdateDate())) latest = c.getLastUpdateDate();
 		}
 		return latest;
 	}

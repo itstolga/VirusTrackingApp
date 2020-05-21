@@ -1,4 +1,4 @@
-public class DeviceAdapter implements Library 
+public class DeviceAdapter extends Device 
 {
     private Device operatingSystem;
 
@@ -10,21 +10,21 @@ public class DeviceAdapter implements Library
     }
 
     @Override
-    public void receive() {
+    public Object send(Device.DataType dataType) {
         if (operatingSystem instanceof Samsung) {
-            ((Samsung) operatingSystem).get();
+            return ((Samsung) operatingSystem).get(dataType);
         } else if (operatingSystem instanceof iPhone) {
-             ((iPhone) operatingSystem).read();
+        	return ((iPhone) operatingSystem).read(dataType);
         }
+        return null;
     }
 
     @Override
-    public Object send() {
+    public void receive(Object p) {
         if (operatingSystem instanceof Samsung) {
-            return ((Samsung) operatingSystem).set();
+            ((Samsung) operatingSystem).set(p);
         } else if (operatingSystem instanceof iPhone) {
-            return ((iPhone) operatingSystem).write();
+            ((iPhone) operatingSystem).write(p);
         }
-        return null;
     }
 }

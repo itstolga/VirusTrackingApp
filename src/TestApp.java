@@ -1,49 +1,94 @@
+import java.time.Period;
+import java.util.Calendar;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class TestApp 
 {
-	static void AddPatients(Database database)
+	
+	static void AddDevices()
 	{
-		Patient test = new Patient("Tolga Yavuz");
-		test.setPassword("123");
-		test.setDevice(new Samsung());
-		test.getFeverCondition().Update(Conditions.ConditionStatus.Normal);
-		test.getMuscleCondition().Update(Conditions.ConditionStatus.Critic);
-		test.getNoseCondition().Update(Conditions.ConditionStatus.Critic);
-		test.setBirthDate(Functions.giveDate("26.11.1995"));
-		test.setAddress("Sakarya Cad. Balçova / Ýzmir");
-		database.addPatient(test);
+		Device newDevice = new DeviceAdapter(new Samsung()); // New User installed app.
+		Patient newPatient = new Patient("Burak Saraç","11.09.1986","Sipahiler Sokak Balçova Ýzmir"); // Created new patient
+		newPatient.setDevice(newDevice); // Assign device to patient device at database
+		newPatient.getFeverCondition().Update(Conditions.ConditionStatus.Critic); // Update condition
+		newDevice.receive(newPatient); // Send updated patient data from phone.
+		Database.getDB().addDevice(newDevice); // Add new device to database.
 		
+		newDevice = new DeviceAdapter(new Samsung()); // New User installed app.
+		newPatient = new Patient("Tolga Yavuz","26.11.1985","Sakarya Cad. Balçova Ýzmir"); // Created new patient
+		newPatient.setDevice(newDevice); // Assign device to patient device at database
+		newPatient.getFeverCondition().Update(Conditions.ConditionStatus.Normal); // Update condition
+		newPatient.getMuscleCondition().Update(Conditions.ConditionStatus.Critic); // Update condition
+		newDevice.receive(newPatient); // Send updated patient data from phone.
+		Database.getDB().addDevice(newDevice); // Add new device to database.
 		
-		Patient test2 = new Patient("Eren Önem");
-		test2.setPassword("456");
-		test2.setDevice(new Samsung());
-		test2.getFeverCondition().Update(Conditions.ConditionStatus.Critic);
-		test2.getMuscleCondition().Update(Conditions.ConditionStatus.Normal);
-		test2.getNoseCondition().Update(Conditions.ConditionStatus.Critic);
-		test2.setBirthDate(Functions.giveDate("18.02.1997"));
-		test2.setAddress("Ata Cad. Balçova / Ýzmir");
-		database.addPatient(test2);
+		newDevice = new DeviceAdapter(new iPhone()); // New User installed app.
+		newPatient = new Patient("Eren Önem","05.05.1987","Tolga Sokak Balçova Ýzmir"); // Created new patient
+		newPatient.setDevice(newDevice); // Assign device to patient device at database
+		newPatient.getFeverCondition().Update(Conditions.ConditionStatus.Normal); // Update condition
+		newPatient.getMuscleCondition().Update(Conditions.ConditionStatus.Normal); // Update condition
+		newPatient.getNoseCondition().Update(Conditions.ConditionStatus.Critic); // Update condition
+		newDevice.receive(newPatient); // Send updated patient data from phone.
+		Database.getDB().addDevice(newDevice); // Add new device to database.
 		
-		Patient test3 = new Patient("Burak Saraç");
-		test3.setPassword("978");
-		test3.setDevice(new Samsung());
-		test3.getFeverCondition().Update(Conditions.ConditionStatus.Critic);
-		test3.getMuscleCondition().Update(Conditions.ConditionStatus.Normal);
-		test3.getNoseCondition().Update(Conditions.ConditionStatus.Critic);
-		test3.setBirthDate(Functions.giveDate("11.09.1996"));
-		test3.setAddress("Sipahiler Sk. Balçova / Ýzmir");
-		database.addPatient(test3);
+		newDevice = new DeviceAdapter(new iPhone()); // New User installed app.
+		newPatient = new Patient("Furkan Özyürek","13.04.1987","Ata Cad. Balçova Ýzmir"); // Created new patient
+		newPatient.setDevice(newDevice); // Assign device to patient device at database
+		newPatient.getFeverCondition().Update(Conditions.ConditionStatus.Normal); // Update condition
+		newPatient.getMuscleCondition().Update(Conditions.ConditionStatus.Critic); // Update condition
+		newPatient.getNoseCondition().Update(Conditions.ConditionStatus.Critic); // Update condition
+		newDevice.receive(newPatient); // Send updated patient data from phone.
+		Database.getDB().addDevice(newDevice); // Add new device to database.
+		
+		newDevice = new DeviceAdapter(new iPhone()); // New User installed app.
+		newPatient = new Patient("Sabri Sarýoðlu","26.07.1984","Ata Cad. Balçova Ýzmir"); // Created new patient
+		newPatient.setDevice(newDevice); // Assign device to patient device at database
+		newPatient.getFeverCondition().Update(Conditions.ConditionStatus.Normal); // Update condition
+		newPatient.getMuscleCondition().Update(Conditions.ConditionStatus.Critic); // Update condition
+		newPatient.getNoseCondition().Update(Conditions.ConditionStatus.Critic); // Update condition
+		newDevice.receive(newPatient); // Send updated patient data from phone.
+		Database.getDB().addDevice(newDevice); // Add new device to database.
+
+		
+		System.out.println("");
 	}
+	
+	static class TimerForUpdate extends TimerTask // Time for check last update time.
+	{
+	    public void run() 
+	    {
+	       for(Patient p : Database.getDB().getPatients())
+	       {
+	    	   //Period per = new Period(p.getLastConditionsUpdate(), Calendar.getInstance().getTime());
+	    	   if(Functions.hoursDiff(p.getLastConditionsUpdate(),Calendar.getInstance().getTime())>= 2 || true) // Remove 'true' will make it work properly. It is just for test.
+	    	   {
+	    		   p.getDevice().receive("You have to update your conditions. (2 hours passed)");
+	    	   }
+	       }
+	    }
+	}
+
 	
 	public static void main(String[] args) 
 	{
-		AddPatients(Database.getDB());
+		AddDevices(); //For testing purpose
+		
 		QueryOne();
 		QueryTwo();
 		QueryThree();
-		//QueryFour(); // This one extra
+		QueryFour(); // This one has extra profile information
+		
+		StartUpdateTimeCheck();
 	}
 	
+	
+	static void StartUpdateTimeCheck()
+	{
+		long seconds_to_run = 5 * 1000;
+		Timer timer = new Timer();
+		timer.schedule(new TimerForUpdate(), seconds_to_run, seconds_to_run); // Check every minute for last-update difference in hours.
+	}
 	
 	public static void QueryOne()
 	{
@@ -95,9 +140,9 @@ public class TestApp
 	// Extra one
 	public static void QueryFour()
 	{
-		System.out.println("Searching for patients in Balçova between ages 15-30 with runny-nose condition status is critic");
+		System.out.println("Searching for patients in Balçova between ages 15-60 with runny-nose condition status is critic");
 		System.out.println("______________________________________________");
-		PatientList<Patient> SearchResult = Database.getDB().getPatients().SearchByAddress("Balçova").SearchByAge(">", 15).SearchByAge("<", 30).SearchByCondition(Conditions.ConditionType.RunnyNose, Conditions.ConditionStatus.Critic);
+		PatientList<Patient> SearchResult = Database.getDB().getPatients().SearchByAddress("Balçova").SearchByAge(">", 15).SearchByAge("<", 60);
 		for(Patient p : SearchResult)
 		{
 			p.getInfo();

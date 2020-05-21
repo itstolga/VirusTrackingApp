@@ -1,5 +1,5 @@
 public interface Library 
 {
-	void receive( );
-	Object send();
+	Object send(Device.DataType dataType);
+	void receive(Object p);
 }

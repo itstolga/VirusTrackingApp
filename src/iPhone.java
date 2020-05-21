@@ -1,15 +1,17 @@
 public class iPhone extends Device
 {
-	public void read()
+	public Object read(Device.DataType dataType)
 	{
-		System.out.println("Receive Test - " + this.getClass().getName());
+		Object returner = super.send(dataType);
+		
+		System.out.println("[ "+dataType.toString()+" RECEIVED FROM "+super.owner.getName()+"'s IPHONE]");
+		
+		return returner;
 	}
 	
-	public Object write()
+	public void write(Object p)
 	{
-		System.out.println("Send Test - " + this.getClass().getName());
-		return this;
+		super.receive(p);
 	}
-
 }
 

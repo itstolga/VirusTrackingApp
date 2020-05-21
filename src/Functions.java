@@ -33,4 +33,20 @@ public class Functions {
 	{
 		return LocalDateTime.ofInstant(Instant.ofEpochMilli(date.getTime()), ZoneOffset.UTC);
 	}
+	
+	
+	public static long hoursDiff(Date startDate, Date endDate){
+
+	    long different = endDate.getTime() - startDate.getTime();
+
+	    long secondsInMilli = 1000;
+	    long minutesInMilli = secondsInMilli * 60;
+	    long hoursInMilli = minutesInMilli * 60;
+	    long daysInMilli = hoursInMilli * 24;
+
+	    long elapsedHours = different / hoursInMilli;
+	    different = different % hoursInMilli;
+
+	    return elapsedHours;
+	}
 }

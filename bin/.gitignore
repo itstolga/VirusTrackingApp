@@ -5,3 +5,13 @@
 /Device$DataType.class
 /TestApp$SayHello.class
 /TestApp$TimerForUpdate.class
+/SerachEngine.class
+/Command.class
+/SearchMethod$SerachEngine.class
+/SearchMethod.class
+/SearchMethod$SearchCommand.class
+/SearchCommand.class
+/SearchEngine.class
+/Engine.class
+/VirusTrackingApp$TimerForUpdate.class
+/VirusTrackingApp.class

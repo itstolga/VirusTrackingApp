@@ -30,8 +30,15 @@ public class Device implements Library
 		}
 		else if(p instanceof String) // Get message from database
 		{
-			System.out.println("[SENT TO "+this.owner.getName()+"] "+p);
+			System.out.println("[SENT TO "+this.owner.getName()+"] "+p); //Shows to server
+			getMessage("You have updated your profile"); // Shows to device user
 		}
+	}
+	
+	@Override
+	public void getMessage(String message)
+	{
+		// Message sent to device
 	}
 	
 	/*public void Register(String name, String birthDate, String address)

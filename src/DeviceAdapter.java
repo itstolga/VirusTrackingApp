@@ -1,5 +1,7 @@
 // Adapter Pattern
 
+// Also observer pattern at getMessage method.
+
 public class DeviceAdapter extends Device 
 {
     private Device operatingSystem;
@@ -27,6 +29,16 @@ public class DeviceAdapter extends Device
             ((Samsung) operatingSystem).set(p);
         } else if (operatingSystem instanceof iPhone) {
             ((iPhone) operatingSystem).write(p);
+        }
+    }
+    
+    @Override
+    public void getMessage(String message)
+    {
+        if (operatingSystem instanceof Samsung) {
+            ((Samsung) operatingSystem).SendNotification(message);
+        } else if (operatingSystem instanceof iPhone) {
+            ((iPhone) operatingSystem).ShowMessage(message);
         }
     }
 }

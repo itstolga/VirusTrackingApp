@@ -13,4 +13,9 @@ public class Samsung extends Device
 	{
 		super.receive(p);
 	}
+	
+	public void SendNotification(String Message)
+	{
+		
+	}
 }

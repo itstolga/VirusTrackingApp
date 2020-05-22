@@ -1,7 +1,8 @@
+// Composite Pattern
+
 import java.util.Calendar;
 import java.util.Date;
 
-// Composite Pattern
 
 public class Conditions 
 {

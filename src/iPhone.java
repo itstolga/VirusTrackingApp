@@ -13,5 +13,12 @@ public class iPhone extends Device
 	{
 		super.receive(p);
 	}
+	
+	
+	
+	public void ShowMessage(String showMessage)
+	{
+		
+	}
 }
 

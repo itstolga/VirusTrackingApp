@@ -37,7 +37,8 @@ public class Functions {
 	}
 	
 	
-	public static long hoursDiff(Date startDate, Date endDate){
+	public static long hoursDiff(Date startDate, Date endDate) 	// Found in stackoverflow and modified for our purpose. 	https://stackoverflow.com/a/43893009
+	{ 
 
 	    long different = endDate.getTime() - startDate.getTime();
 

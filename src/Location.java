@@ -1,3 +1,4 @@
+// Location object to hold coordinates.
 
 public class Location 
 {

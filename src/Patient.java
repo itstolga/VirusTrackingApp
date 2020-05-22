@@ -95,7 +95,7 @@ public class Patient
 		}
 	}
 	
-	public Date getLastConditionsUpdate()
+	public Date getLastConditionsUpdate() 		// Gets oldest update time from all conditions.
 	{
 		Date latest = null;
 		for(Conditions.Condition c : getConditions())
@@ -106,7 +106,7 @@ public class Patient
 		return latest;
 	}
 	
-	public void getInfo()
+	public void getInfo()		// Shows all information about patient like a card.
 	{
 		System.out.println("\n|__________ "+this.name + " __________");
 

@@ -1,3 +1,5 @@
+// Device class implemented from Library
+
 public class Device implements Library
 {
 	

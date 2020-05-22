@@ -58,7 +58,7 @@ public class TestApp
 	    {
 	       for(Patient p : Database.getDB().getPatients())
 	       {
-	    	   if(Functions.hoursDiff(p.getLastConditionsUpdate(),Calendar.getInstance().getTime())>= 2 || true) // Remove 'true' will make it work properly. It is just for test.
+	    	   if(Functions.hoursDiff(p.getLastConditionsUpdate(),Calendar.getInstance().getTime())>= 2 || true) // Remove 'true' will make it work properly. It is just for testing.
 	    	   {
 	    		   p.getDevice().receive("You have to update your conditions. (2 hours passed)");
 	    	   }
@@ -71,12 +71,12 @@ public class TestApp
 	{
 		AddDevices(); //For testing purpose
 		
-		QueryOne();
-		QueryTwo();
-		QueryThree();
-		QueryFour(); // This one has extra profile card
+		QueryOne(); 	// Shows Patients between ages 25-60
+		QueryTwo(); 	// Shows Patients whose fever condition is criting.
+		QueryThree(); 	// Shows patients between ages 25-60 & got muscle ache is critic and prints last condition update time.
+		QueryFour(); 	// This one has extra profile card
 		
-		StartUpdateTimeCheck();
+		StartUpdateTimeCheck(); // Checks last-condition update time every minute.
 	}
 	
 	

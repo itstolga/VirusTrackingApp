@@ -1,3 +1,5 @@
+// Adapter Pattern
+
 public class DeviceAdapter extends Device 
 {
     private Device operatingSystem;

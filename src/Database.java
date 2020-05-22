@@ -1,4 +1,4 @@
-
+// Fake database for testing.
 
 public class Database 
 {
